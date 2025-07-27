@@ -1,6 +1,7 @@
 ---
 title: (原理&实战)前向/反向传播 
 date: 2024-01-09 12:22:12
+weight: 2
 tags:
   - deepLearning
 categories: 

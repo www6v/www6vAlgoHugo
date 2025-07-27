@@ -1,6 +1,7 @@
 ---
 title: Deep Learning
 date: 2022-06-11 15:57:10
+weight: 1
 tags:
   - DeepLearning
 categories:
