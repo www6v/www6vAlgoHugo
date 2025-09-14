@@ -1,7 +1,7 @@
 ---
 title: Kimi-Researcher
 date: 2024-07-08 18:49:43
-weight: 2
+weight: 10
 ---
 
 

@@ -1,7 +1,7 @@
 ---
-title: (原理|实现)DPO
+title: (Survey) Agentic RL
 date: 2024-07-08 18:49:43
-weight: 4
+weight: 1
 ---
 
 
