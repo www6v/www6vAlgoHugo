@@ -1,7 +1,7 @@
 ---
-title: MOE
+title: Survey
 type: docs
-weight: 4
+weight: 1
 bookFlatSection: false
 bookCollapseSection: true
 ---

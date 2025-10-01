@@ -1,7 +1,7 @@
 ---
-title: MOE
+title: Dense
 type: docs
-weight: 4
+weight: 2
 bookFlatSection: false
 bookCollapseSection: true
 ---

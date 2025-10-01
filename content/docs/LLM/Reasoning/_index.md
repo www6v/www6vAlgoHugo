@@ -1,7 +1,7 @@
 ---
-title: MOE
+title: Reasoning
 type: docs
-weight: 4
+weight: 3
 bookFlatSection: false
 bookCollapseSection: true
 ---
