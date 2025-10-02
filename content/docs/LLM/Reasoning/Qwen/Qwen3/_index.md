@@ -4,14 +4,15 @@ type: docs
 weight: 1
 ---
 
-# 论文
+# 论文 
 https://github.com/QwenLM/Qwen3/
 
+# Arch [2]
+![Qwen3 dense](./images/arch.png)
 
-# Arch
+# Compare [1] 
 ![Qwen3 dense](./images/qwen3-dense.webp)
-
-![Qwen3 dense](./images/qwen3-moe.webp)
+![Qwen3 moe](./images/qwen3-moe.webp)
 
 
 # Post-training
@@ -23,9 +24,19 @@ https://github.com/QwenLM/Qwen3/
 
 
 #  参考
-[The Big LLM Architecture Comparison](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)
-
+1. [The Big LLM Architecture Comparison](https://magazine.sebastianraschka.com/p/the-big-llm-architecture-comparison)
+2. [Understanding and Implementing Qwen3 From Scratch](https://sebastianraschka.com/blog/2025/qwen3-from-scratch.html)
 
 [Qwen3技术报告的几点细节、ArXiv论文翻译实现方案及试错历程](https://mp.weixin.qq.com/s/-4H-GhqWIpoBYvJ2M7_8DQ)
 
-[【LLM4】Qwen3-RL训练详解](https://zhuanlan.zhihu.com/p/1921218299133396032)
+[【LLM4】Qwen3-RL训练详解](https://zhuanlan.zhihu.com/p/1921218299133396032) ***
+
+
+up: 卢老师， 怀中猫
+
+
+
+
+
+
+
