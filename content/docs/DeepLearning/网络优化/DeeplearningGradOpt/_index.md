@@ -21,6 +21,8 @@ categories:
 
 ![maonmv7e.bmp](./images/maonmv7e.bmp)
 
+![Acc.png](./images/Acc.png)
+
 
 # **G**radient checkpointing [10]
 
@@ -38,6 +40,10 @@ categories:
 
     **选择性地重新计算（recompute）一部分的 intermediate activations 在反向传播过程中**来缓解显存的压力；
 
+
+![checkpoint.png](./images/checkpoint.png)
+
+![recompute.png](./images/recompute.png)
     
 
 # **Gradient Clipping  (梯度裁剪)**
