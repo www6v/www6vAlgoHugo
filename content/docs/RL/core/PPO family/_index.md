@@ -1,7 +1,7 @@
 ---
-title: R1-zero
+title: PPO family
 type: docs
-weight: 10
+weight: 3
 bookFlatSection: false
 bookCollapseSection: true
 ---
