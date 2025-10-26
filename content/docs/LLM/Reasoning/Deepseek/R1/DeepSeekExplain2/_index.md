@@ -1,23 +1,14 @@
 ---
 title: 解读 DeepSeek[邱锡鹏]
 date: 2024-02-18 09:16:31
-tags:
-  - DeepSeek
-categories: 
-  - AIGC
-  - DeepSeek   
 ---
 
-<p></p>
-<!-- more -->
 
+![ubqella3.bmp](./images/ubqella3.bmp)  
 
-
-{% asset_img  'ubqella3.bmp' %}
-
-{% asset_img  'gelov7re.bmp' %}
-
-{% asset_img  'Deepseek-R1实现过程.png' %}
+![gelov7re.bmp](./images/gelov7re.bmp)
+  
+![Deepseek-R1实现过程.png](./images/Deepseek-R1实现过程.png)  
 
 
 这基本上就是R1的技术路线。我简单列一些**关于DeepSeek R1的思考和启发**：

@@ -1,7 +1,7 @@
 ---
-title: V3
+title: Deepseek
 type: docs
-weight: 10
+weight: 30
 bookFlatSection: false
 bookCollapseSection: true
 ---
