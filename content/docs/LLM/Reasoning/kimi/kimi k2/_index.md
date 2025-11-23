@@ -1,7 +1,7 @@
 ---
 title: kimi k2
 date: 2024-02-06 18:35:28
-weight: 1
+weight: 2
 ---
 
 

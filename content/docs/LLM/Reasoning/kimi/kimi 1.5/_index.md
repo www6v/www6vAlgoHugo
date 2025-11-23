@@ -1,7 +1,7 @@
 ---
 title: Kimi1.5
 type: docs
-weight: 1
+weight: 10
 ---
 
 # 论文
