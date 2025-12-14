@@ -186,3 +186,7 @@ weight: 10
 
 ## 参考
 以下是对 [《深度解读 Kimi-K1.5，真正了解 RL 数据是怎么筛选的》](https://yuanchaofa.com/post/kimi-k1.5-paper-reading-notes.html) 的**结构化摘要**，保留原文关键图片与核心要点，便于快速把握 Kimi-K1.5 的技术亮点与工程实践细节。
+
+
+
+[【论文解读】Kimi-k1.5：无需复杂搜索，Long Context + RL就能实现复杂推理](https://zhuanlan.zhihu.com/p/19612718816)
