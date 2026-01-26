@@ -1,7 +1,7 @@
 ---
 title: Search
 type: docs
-weight: 3
+weight: 10
 bookFlatSection: false
 bookCollapseSection: true
 ---

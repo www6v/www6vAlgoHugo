@@ -1,7 +1,7 @@
 ---
 title: Survey
 type: docs
-weight: 3
+weight: 1
 bookFlatSection: false
 bookCollapseSection: true
 ---
