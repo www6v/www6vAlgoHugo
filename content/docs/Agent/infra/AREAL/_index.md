@@ -1,5 +1,5 @@
 ---
-title: Framework
+title: AREAL
 type: docs
 weight: 3
 bookFlatSection: false
