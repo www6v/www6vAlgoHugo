@@ -103,7 +103,7 @@ class StalenessManager:
 
 **状态转换图**：
 
-```mermaid
+``` mermaid
 stateDiagram-v2
     [*] --> Enqueued: 任务提交
     Enqueued --> Running: 开始执行
