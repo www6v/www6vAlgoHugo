@@ -103,7 +103,7 @@ class StalenessManager:
 
 **状态转换图**：
 
-``` mermaid
+{{<mermaid>}}
 stateDiagram-v2
     [*] --> Enqueued: 任务提交
     Enqueued --> Running: 开始执行
@@ -111,7 +111,8 @@ stateDiagram-v2
     Running --> Rejected: 完成但被拒绝/失败
     Accepted --> [*]
     Rejected --> [*]
-```
+{{</mermaid>}}
+
 
 ---
 
@@ -356,7 +357,7 @@ def _fetch_loop(self) -> None:
 
 ### 4.1 Off-policyness 控制流程
 
-```mermaid
+{{<mermaid>}} 
 sequenceDiagram
     participant Main as 主线程
     participant Dispatcher as BatchTaskDispatcher
@@ -401,11 +402,11 @@ sequenceDiagram
     
     Main->>Dispatcher: wait_results(count)
     Dispatcher->>Main: [trajectory1, trajectory2, ...]
-```
+{{</mermaid>}}
 
 ### 4.2 Partial Rollouts 处理流程
 
-```mermaid
+{{<mermaid>}} 
 graph TB
     Start([开始生成请求]) --> InitVersion[记录初始版本 v0]
     InitVersion --> GenLoop{继续生成?}
@@ -433,11 +434,11 @@ graph TB
     style UpdateVersion fill:#fff4e6
     style RecordV1 fill:#fff4e6
     style RecordV0 fill:#e6f7ff
-```
+{{</mermaid>}}
 
 ### 4.3 版本信息在轨迹中的流动
 
-```mermaid
+{{<mermaid>}} 
 graph LR
     A[推理服务器<br/>版本 v3] -->|agenerate| B[ModelResponse<br/>output_versions: 3,3,3,...]
     B -->|workflow.arun_episode| C[Trajectory<br/>versions: -1,-1,3,3,3,...]
@@ -454,7 +455,7 @@ graph LR
     style A fill:#e1f5ff
     style D fill:#e1f5ff
     style I fill:#ffe6e6
-```
+{{</mermaid>}}
 
 ---
 
@@ -532,7 +533,8 @@ def ppo_actor_loss_fn(...):
 
 ## 6. 系统整体流程图
 
-```mermaid
+有语法错误
+{{<mermaid>}}   
 graph TB
     subgraph "1. 初始化阶段"
         Init[初始化推理引擎和训练引擎]
@@ -591,7 +593,76 @@ graph TB
     style GenTokens fill:#e6f7ff
     style SyncWeights fill:#fff4e6
     style IncVersion fill:#fff4e6
-```
+{{</mermaid>}}
+
+
+
+
+cursor 修复的
+{{<mermaid>}} 
+graph TB
+    subgraph "1. 初始化阶段"
+        Init["初始化推理引擎和训练引擎"]
+        Init --> LaunchServer["启动推理服务器<br/>SGLang/vLLM"]
+        LaunchServer --> CreateSM["创建 StalenessManager<br/>max_staleness=4"]
+        CreateSM --> CreateDispatcher["创建 BatchTaskDispatcher"]
+        CreateDispatcher --> StartThreads["启动生产者/消费者线程"]
+    end
+    
+    subgraph "2. 训练循环"
+        TrainStep["训练步骤 step"]
+        TrainStep --> PrepareBatch["actor.prepare_batch<br/>收集 rollout 数据"]
+        
+        PrepareBatch --> CheckCapacity{"检查容量"}
+        CheckCapacity -->|"capacity > 0"| SubmitTask["提交 rollout 任务"]
+        CheckCapacity -->|"capacity <= 0"| WaitCapacity["等待容量释放"]
+        WaitCapacity --> CheckCapacity
+        
+        SubmitTask --> RunWorkflow["执行 workflow.arun_episode"]
+        RunWorkflow --> GenTokens["生成 tokens<br/>记录版本信息"]
+        
+        GenTokens --> CheckUpdate{"权重更新中断?"}
+        CheckUpdate -->|"是"| WaitUpdate["等待更新完成<br/>继续生成"]
+        WaitUpdate --> GenTokens
+        CheckUpdate -->|"否"| CompleteGen["完成生成"]
+        
+        CompleteGen --> BuildTraj["构建轨迹<br/>包含版本张量"]
+        BuildTraj --> AcceptReject{"通过筛选?"}
+        AcceptReject -->|"是"| CollectBatch["收集到批次"]
+        AcceptReject -->|"否"| DiscardTraj["丢弃轨迹"]
+        
+        CollectBatch --> BatchReady{"批次就绪?"}
+        BatchReady -->|"否"| CheckCapacity
+        BatchReady -->|"是"| ComputeAdv["计算 Advantages"]
+        
+        ComputeAdv --> PPOUpdate["PPO 更新<br/>Decoupled Loss"]
+        PPOUpdate --> UpdateLR["更新学习率"]
+        UpdateLR --> SyncWeights["同步权重到推理服务器"]
+        SyncWeights --> IncVersion["增加版本号<br/>version++"]
+        IncVersion --> NextStep["下一步"]
+        NextStep --> TrainStep
+    end
+    
+    subgraph "3. 并发控制"
+        SM["StalenessManager"]
+        SM --> CalcCap["计算容量<br/>min(concurrency, staleness)"]
+        CalcCap --> TrackState["跟踪 rollout 状态<br/>enqueued/running/accepted"]
+    end
+    
+    StartThreads --> TrainStep
+    PrepareBatch -.调用.-> SM
+    IncVersion -.更新.-> SM
+    
+    style CheckUpdate fill:#ffe6e6
+    style WaitUpdate fill:#ffe6e6
+    style GenTokens fill:#e6f7ff
+    style SyncWeights fill:#fff4e6
+    style IncVersion fill:#fff4e6
+{{</mermaid>}}
+
+
+
+
 
 ---
 
@@ -792,3 +863,6 @@ class CustomWorkflow(RolloutWorkflow):
             "attention_mask": torch.ones(len(seq), dtype=torch.bool).unsqueeze(0),
         }
 ```
+
+# 参考
+AREAL v0.5.3
