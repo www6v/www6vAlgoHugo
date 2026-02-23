@@ -1,5 +1,5 @@
 ---
-title: veRL架构[A1]
+title: (A1)veRL架构
 date: 2024-07-22 16:14:51
 weight: 1
 ---
